@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Lexend:wght@400;600;700;900&family=Inter:wght@400;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-poppins: "Poppins", sans-serif;
+  --font-lexend: "Lexend", sans-serif;
+  --font-inter: "Inter", sans-serif;
+
+  --color-background: #15121b;
+  --color-on-background: #e8dfee;
+  --color-primary: #d2bbff;
+  --color-primary-container: #7c3aed;
+  --color-on-primary-container: #ede0ff;
+  --color-inverse-primary: #732ee4;
+  --color-surface-container: #221e28;
+  --color-surface-container-lowest: #100d16;
+  --color-surface-variant: #37333e;
+  --color-outline-variant: #4a4455;
+  --color-on-surface-variant: #ccc3d8;
+
+  --spacing-gutter: 32px;
+  --spacing-container-max: 1280px;
+  --spacing-section-gap: 120px;
+
+  @keyframes infinite-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  @keyframes shimmer {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
+  }
+
+  --animate-infinite-scroll: infinite-scroll 25s linear infinite;
+  --animate-shimmer: shimmer 2s linear infinite;
+}
+
+@layer components {
+  .glass-bubble {
+    @apply backdrop-blur-xl transition-all duration-500 ease-out;
+    background: transparent;
+    border: 1px solid transparent;
+  }
+
+  .glass-bubble:hover, .glass-bubble-active {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2), inset 0 0 10px rgba(255, 255, 255, 0.05);
+    transform: translateY(-2px);
+  }
+
+  .glass-bubble:active {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transform: translateY(0) scale(0.95);
+  }
+
+  .shimmer-star {
+    @apply animate-shimmer;
+  }
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-on-background);
+  font-family: var(--font-inter);
+  -webkit-font-smoothing: antialiased;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.glass-panel {
+  background: rgba(34, 30, 40, 0.4);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.neon-glow {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, rgba(21, 18, 27, 0) 70%);
+  z-index: -1;
+  pointer-events: none;
+}
